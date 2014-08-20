@@ -1,7 +1,7 @@
 ---
 title       : Predicting Diamond Price 
 subtitle    : Application of RandomForest
-author      : Yunfeng Xi
+author      : Arendale
 job         : Student
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
