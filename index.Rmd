@@ -1,0 +1,51 @@
+---
+title       : Predicting Diamond Price 
+subtitle    : Application of RandomForest
+author      : Yunfeng Xi
+job         : Student
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Data Summary
+```{r}
+library(ggplot2)
+data(diamonds)
+str(diamonds)
+```
+---
+
+---
+## Exploratory Data Analysis
+As an example, we plot `price` as function of `carat` and `cut`. 
+```{r, echo=FALSE}
+ggplot(diamonds, aes(carat, price, colour = cut)) +
+  geom_point() + theme(legend.position = "top")
+```
+---
+
+---
+## RandomForest
+* To expedite the prediction, 1000 samples are subsetted randomly from original about 50000 observations.
+```{r, eval=FALSE}
+library(caret)
+library(randomForest)
+diamonds <- diamonds[sample(nrow(diamonds), 1000, replace=FALSE), ]
+modFit <- randomForest(price~., data=diamonds)
+```
+* User's input is recorded and formed into a one-row data frame `urDiamond`. 
+* The price of diamond described by this data frame can be predicted with `predict()`.
+```{r, eval=FALSE}
+price <- predict(modFit, urDiamond)
+```
+---
+
+---
+## Acknowledges
+* This app is built with `shiny` package. The `server.R`, `ui.R` and supporting files are
+  in this [repo](https://github.com/arendale/DataProduct).
+* This app is published on [shinyapp](http://arendale.shinyapps.io/DataProduct/).
